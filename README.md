@@ -9,9 +9,9 @@ uppfyllas i ett sammanhängande system.
 | Krav | Vad visas | Var i koden |
 |------|-----------|-------------|
 | Krav 1 – Autentisering | JWT-baserad inloggning och registrering | `routes/auth.js`, `middleware/auth.js` |
-| Krav 2 – Realtid | Simultan redigering via Socket.io | `socket/editor.js` |
+| Krav 2 – Realtid | Simultan redigering via Socket.io, cursors, aktiva användare | `socket/collaboration.js` |
 | Krav 3 – CI och tester | GitHub Actions + Vitest med mongodb-memory-server | `.github/workflows/ci.yml`, `tests/` |
-| Krav 4 – Kommentarer | Kommentarer kopplade till dokument | `routes/comments.js` |
+| Krav 4 – Kommentarer | Radbaserade kommentarer kopplade till filer | `routes/comments.js`, `controllers/commentController.js` |
 
 ## Kör lokalt
 
@@ -29,19 +29,19 @@ Servern startar på `http://localhost:3001` (eller det PORT du satt i `.env`).
 npm test
 ```
 
-Testerna använder `mongodb-memory-server` och kräver ingen extern MongoDB.
+Testerna använder `mongodb-memory-server` och kräver ingen extern MongoDB-installation.
 
 ## Miljövariabler
 
 | Variabel | Beskrivning | Exempel |
-|----------|-------------|----------|
+|----------|-------------|---------|
 | `MONGODB_URI` | Anslutningssträng till MongoDB | `mongodb://localhost:27017` |
 | `DB_NAME` | Databasnamn | `coed` |
 | `PORT` | Port som servern lyssnar på | `3001` |
 | `JWT_SECRET` | Hemlighet för JWT-signering | `byt-ut-mig` |
-| `CORS_ORIGIN` | Tillaten CORS-origin | `http://localhost:5173` |
+| `CORS_ORIGIN` | Tillåten CORS-origin | `http://localhost:5173` |
 
-## Driftsattning
+## Driftsättning
 
 Bygg och kör med Docker:
 
