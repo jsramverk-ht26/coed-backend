@@ -1,0 +1,23 @@
+{
+  "name": "coed-backend",
+  "version": "1.0.0",
+  "description": "Backend for DV1677 HT26 reference app — collaborative code editor",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.3.0",
+    "socket.io": "^4.7.4"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^10.0.0",
+    "supertest": "^7.0.0",
+    "vitest": "^2.0.0"
+  }
+}
