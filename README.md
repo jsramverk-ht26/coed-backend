@@ -10,8 +10,21 @@ uppfyllas i ett sammanhängande system.
 |------|-----------|-------------|
 | Krav 1 – Autentisering | JWT-baserad inloggning och registrering | `routes/auth.js`, `middleware/auth.js` |
 | Krav 2 – Realtid | Simultan redigering via Socket.io, cursors, aktiva användare | `socket/collaboration.js` |
-| Krav 3 – CI och tester | GitHub Actions + Vitest med mongodb-memory-server | `.github/workflows/ci.yml`, `tests/` |
-| Krav 4 – Kommentarer | Radbaserade kommentarer kopplade till filer | `routes/comments.js`, `controllers/commentController.js` |
+| Krav 3 – Kommentarer | Radbaserade kommentarer kopplade till filer | `routes/comments.js`, `controllers/commentController.js` |
+| Krav 4 – Code-mode | Monaco Editor, dokumenttyp sparas i databasen | Se frontend: `coed-frontend` |
+| Krav 6 – Testning | GitHub Actions + Vitest med mongodb-memory-server | `.github/workflows/ci.yml`, `tests/` |
+
+## Datamodell
+
+MongoDB-collections som referensimplementationen använder.
+
+| Collection | Fält |
+|------------|------|
+| `users` | `email`, `passwordHash`, `role`, `createdAt` |
+| `files` | `name`, `content`, `type` (text\|code), `language`, `owners` [userId], `createdAt`, `updatedAt` |
+| `comments` | `fileId`, `userId`, `userEmail`, `lineNumber`, `text`, `createdAt` |
+
+Relationer hanteras via ID-referenser — en kommentar har ett `fileId` som pekar på ett dokument.
 
 ## Kör lokalt
 
