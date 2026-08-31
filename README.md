@@ -1,8 +1,16 @@
 # coed-backend
 
-Backend till en kollaborativ kodeditor, använd som kursreferens i DV1677 HT26 vid BTH.
-Byggt med Express, MongoDB, Socket.io och JWT. Visar hur flera projektkrav kan
-uppfyllas i ett sammanhängande system.
+Referensimplementation för **DV1677 HT26** — backend till en kollaborativ kodredigerare.
+
+> **OBS — läs detta först**
+>
+> Det här repot är ett *referensexempel*, inte en facit eller mall att kopiera.
+> Det visar ett sätt att implementera flera av kursens projektkrav, men exakt
+> hur ni löser dem i ert eget projekt är upp till er. Viss funktionalitet kan
+> saknas, vara förenklad eller skilja sig från vad kursens krav specifikt efterfrågar.
+>
+> Krav 5 (notifieringar) är **inte implementerat** i det här repot.
+> GraphQL (tidigare Krav 5, nu borttaget ur kursen) finns inte heller.
 
 ## Projektkrav som demonstreras
 
@@ -10,21 +18,10 @@ uppfyllas i ett sammanhängande system.
 |------|-----------|-------------|
 | Krav 1 – Autentisering | JWT-baserad inloggning och registrering | `routes/auth.js`, `middleware/auth.js` |
 | Krav 2 – Realtid | Simultan redigering via Socket.io, cursors, aktiva användare | `socket/collaboration.js` |
-| Krav 3 – Kommentarer | Radbaserade kommentarer kopplade till filer | `routes/comments.js`, `controllers/commentController.js` |
-| Krav 4 – Code-mode | Monaco Editor, dokumenttyp sparas i databasen | Se frontend: `coed-frontend` |
-| Krav 6 – Testning | GitHub Actions + Vitest med mongodb-memory-server | `.github/workflows/ci.yml`, `tests/` |
-
-## Datamodell
-
-MongoDB-collections som referensimplementationen använder.
-
-| Collection | Fält |
-|------------|------|
-| `users` | `email`, `passwordHash`, `role`, `createdAt` |
-| `files` | `name`, `content`, `type` (text\|code), `language`, `owners` [userId], `createdAt`, `updatedAt` |
-| `comments` | `fileId`, `userId`, `userEmail`, `lineNumber`, `text`, `createdAt` |
-
-Relationer hanteras via ID-referenser — en kommentar har ett `fileId` som pekar på ett dokument.
+| Krav 3 – CI och tester | GitHub Actions + Vitest med mongodb-memory-server | `.github/workflows/ci.yml`, `tests/` |
+| Krav 4 – Kommentarer | Radbaserade kommentarer kopplade till filer | `routes/comments.js`, `controllers/commentController.js` |
+| Krav 5 – Notifieringar | **Ej implementerat** | — |
+| Krav 6 – Kodeditor | Monaco Editor finns i frontend-repot | — |
 
 ## Kör lokalt
 
@@ -34,7 +31,7 @@ npm install
 npm run dev
 ```
 
-Servern startar på `http://localhost:3001` (eller det PORT du satt i `.env`).
+Servern startar på `http://localhost:3001`.
 
 ## Tester
 
